@@ -61,10 +61,46 @@
         .nextThunderstorm {
             border: none;
         }
+
+        .button {
+            background-color: #1b1b24; /* Dark blue background color for button with subtle tint */
+            color: #cdd4e6; /* Light gray text color */
+            font-size: 24px;
+            border: none;
+            border-radius: 10px; /* Rounded corners for button */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            text-align: center; /* Center text horizontally */
+            text-decoration: none; /* Remove default link underline */
+            padding-top: 5px;
+            padding-left: 2.5px;
+            padding-right: 2.5px;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+            box-shadow: 0px 0px 12px rgba(141, 159, 192, 0.473); /* Add drop shadow */
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .button:hover {
+            background-color: #21212b; /* Dark blue background color with subtle tint on hover */
+        }
+
+        .button-icon {
+            font-size: 26px; /* Adjust icon size */
+            margin-bottom: 10px; /* Add space between icon and text */
+        }
+
     </style>
 </head>
 
 <body>
+    <a href="index.html" class="button">
+        <span class="button-icon">🏠︎</span>
+    </a>
     <table>
         <thead>
             <tr>
