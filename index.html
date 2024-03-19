@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Spider's Den Rain Timer</title>
+    <title>Homepage</title>
     <style>
         body {
             background-color: #111118; /* Dark blue background color with subtle tint */
@@ -16,137 +15,42 @@
             display: flex; /* Use flexbox to center content vertically */
             justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
-            flex-direction: column; /* Align items in a column */
-            filter: brightness(90%); /* Add blue tint to the background */
-            font-size: 34px;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 900px; /* Limit table width */
-            background-color: #1b1b24; /* Dark blue background color for table with subtle tint */
-            border-radius: 10px; /* Rounded corners for table */
-            overflow: hidden; /* Hide overflowing content */
+        .button {
+            background-color: #1b1b24; /* Dark blue background color for button with subtle tint */
+            color: #cdd4e6; /* Light gray text color */
+            font-size: 24px;
+            padding: 20px 30px; /* Add padding to button */
+            border: none;
+            border-radius: 10px; /* Rounded corners for button */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            text-align: center; /* Center text horizontally */
+            text-decoration: none; /* Remove default link underline */
+            display: flex; /* Use flexbox for button content alignment */
+            flex-direction: column; /* Align content in a column */
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
             box-shadow: 0px 0px 12px rgba(141, 159, 192, 0.473); /* Add drop shadow */
         }
 
-        th, td {
-            padding: 10px; /* Add padding to cells */
-            text-align: left; /* Align text to the left */
-            border-bottom: 1px solid #a5b1cc; /* Light gray bottom border for cells */
+        .button:hover {
+            background-color: #21212b; /* Dark blue background color with subtle tint on hover */
         }
 
-        th {
-            background-color: #161622; /* Dark blue background color for table header with subtle tint */
-        }
-
-        .yes {
-            color: #64dd17 !important; /* Green color for "Yes" cells */
-        }
-
-        .no {
-            color: #d50000 !important; /* Red color for "No" cells */
-        }
-
-        p {
-            margin-top: 20px; /* Add space between table and paragraph */
-            font-size: 14px;
-        }
-
-        #nextThunderstorm {
-            border: none;
-        }
-
-        .nextThunderstorm {
-            border: none;
+        .button-icon {
+            font-size: 40px; /* Adjust icon size */
+            margin-bottom: 10px; /* Add space between icon and text */
         }
     </style>
 </head>
 
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Condition</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Rain?</td>
-                <td id="rainNow" class="no">No</td>
-            </tr>
-            <tr>
-                <td>Thunderstorm?</td>
-                <td id="thunderstormNow" class="no">No</td>
-            </tr>
-            <tr>
-                <td>Time remaing in event</td>
-                <td id="timeLeft">No Active Event</td>
-            </tr>
-            <tr>
-                <td>Next rain</td>
-                <td id="nextRain">Error</td>
-            </tr>
-            <tr>
-                <td class="nextThunderstorm">Next thunderstorm</td>
-                <td id="nextThunderstorm">Error</td>
-            </tr>
-        </tbody>
-    </table>
-    <p><br>03-19-2024 Updated timer code.</p>
-    <script>
-        const cooldown = 2400;
-        const duration = 1200;
-        const thunderstormInterval = 3;
-
-        function rainTimer() {
-            const timestamp = Math.floor(Date.now() / 1000);
-            const skyblockAge = (timestamp - 1560275700);
-
-            const thunderstorm = skyblockAge % ((cooldown + duration) * thunderstormInterval);
-            const rain = skyblockAge % (cooldown + duration);
-            document.getElementById('timeLeft').textContent = secsToTime(0);
-
-            if (cooldown <= rain) {
-                document.getElementById('rainNow').textContent = "Yes";
-                document.getElementById('rainNow').className = "yes";
-                let timeLeft = (cooldown + duration) - rain;
-                document.getElementById('timeLeft').textContent = secsToTime(timeLeft);
-                document.getElementById('nextRain').textContent = secsToTime(timeLeft + cooldown);
-            } else {
-                document.getElementById('rainNow').textContent = "No";
-                document.getElementById('rainNow').className = "no";
-                document.getElementById('nextRain').textContent = secsToTime(cooldown - rain);
-            }
-
-            if ((cooldown <= thunderstorm) && (thunderstorm < (cooldown + duration))) {
-                document.getElementById('thunderstormNow').textContent = "Yes";
-                document.getElementById('thunderstormNow').className = "yes";
-                let timeLeft = (cooldown + duration) - rain;
-                document.getElementById('timeLeft').textContent = secsToTime(timeLeft);
-                document.getElementById('nextThunderstorm').textContent = secsToTime(timeLeft + ((cooldown + duration) * (thunderstormInterval - 1)) + cooldown);
-            } else {
-                document.getElementById('thunderstormNow').textContent = "No";
-                document.getElementById('thunderstormNow').className = "no";
-                let nextThunderstorm;
-                if (thunderstorm < cooldown) {
-                    nextThunderstorm = cooldown - thunderstorm;
-                } else if ((cooldown + duration) <= thunderstorm) {
-                    nextThunderstorm = ((cooldown + duration) * thunderstormInterval) - thunderstorm + cooldown;
-                }
-                document.getElementById('nextThunderstorm').textContent = secsToTime(nextThunderstorm);
-            }
-        }
-
-        function secsToTime(seconds) {
-            return new Date(seconds * 1000).toISOString().slice(11, 19);
-        }
-
-        rainTimer();
-        setInterval(rainTimer, 100);
-    </script>
+    <a href="spiders_den_rain_timer.html" class="button">
+        <span class="button-icon">🕷️</span>
+        Spiders Den Rain Timer
+    </a>
 </body>
 
 </html>
